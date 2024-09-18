@@ -1,0 +1,49 @@
+@layer components {
+  /* Buttons
+
+    USAGE:
+    <button class="i-btn i-btn-blue"> Some text </button>
+
+    NOTE: you can override default styles (e.g. padding) by combining i-btn
+    with other Tailwind utils: <button class="i-btn i-btn-blue h-auto">
+  */
+
+  .i-btn {
+    @apply i-interact h-@50
+      overflow-hidden rounded-@5
+      px-@10
+      py-@5 text-center
+      font-A text-@14 text-white
+      disabled:bg-@gray disabled:text-white;
+  }
+
+  .i-btn-blue {
+    @apply bg-@blue;
+  }
+  .i-btn-red {
+    @apply bg-@red;
+  }
+  .i-btn-green {
+    @apply bg-@green;
+  }
+  .i-btn-white {
+    @apply bg-white text-@blue border border-@blue;
+  }
+
+  /* Sharp corners */
+  .i-btn-sharp {
+    @apply rounded-none;
+  }
+
+  /*
+    A special button that can handle `selected` attribute.
+    If it's added, button changes its appearance.
+    <button selected class="i-btn i-btn-select ...">
+  */
+  .i-btn-select[selected=true] {
+    @apply i-btn-green;
+  }
+  .i-btn-select {
+    @apply active:[&:not(:disabled)]:translate-y-0;
+  }
+}

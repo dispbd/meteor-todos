@@ -1,0 +1,67 @@
+{
+  "name": "meteor-todos",
+  "version": "1.0.0",
+  "private": true,
+  "author": "dispbd",
+  "scripts": {
+    "start": "meteor run --no-release-check --exclude-archs web.browser.legacy --port 80",
+    "production": "meteor --no-release-check --production --port 80",
+    "build": "meteor build ../output --directory",
+    "start-vite-build": "(cd ../output/bundle && (cd programs/server && meteor npm install) && PORT=4040 ROOT_URL=http://localhost:4040 MONGO_URL=mongodb://127.0.0.1:3001/meteor meteor node main.js)",
+    "format": "prettier --write \"src/**/*.{svelte,js}\" && eslint --fix --ext .js,.svelte \"src/**/*.{svelte,js}\""
+  },
+  "dependencies": {
+    "@babel/runtime": "7.25.6",
+    "body-parser": "^1.20.3",
+    "log4js": "^6.9.1",
+    "meteor-node-stubs": "1.2.10",
+    "simpl-schema": "3.4.6",
+    "svelte": "5.0.0-next.247"
+  },
+  "devDependencies": {
+    "@babel/core": "7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
+    "@sveltejs/vite-plugin-svelte": "4.0.0-next.7",
+    "@types/body-parser": "^1.19.5",
+    "@types/eslint": "^8.56.12",
+    "@types/express": "^4.17.21",
+    "@types/meteor": "2.9.8",
+    "@types/node": "^20.16.5",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "autoprefixer": "10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-svelte": "^2.44.0",
+    "meteor-vite": "2.0.0-next.1",
+    "postcss": "8.4.47",
+    "postcss-load-config": "6.0.1",
+    "prettier": "3.3.3",
+    "prettier-plugin-svelte": "3.2.6",
+    "prettier-plugin-tailwindcss": "0.6.6",
+    "tailwindcss": "3.4.11",
+    "tailwindcss-extend": "0.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vite": "5.4.6"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "src/client/clientFake.ts",
+      "server": "src/server/server.ts"
+    }
+  },
+  "meteor-comments": {
+    "mainModule": "https://docs.meteor.com/packages/modules.html#Modular-application-structure. We use clientFake.js because vite:bundler has a different entry point defined in vite.config.ts.",
+    "testModule": "tests/main.ts"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ]
+}

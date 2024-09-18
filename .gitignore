@@ -1,0 +1,12 @@
+node_modules/
+_archive
+ngrok.*
+*.zip
+.vscode
+tailwindcss-extend.js
+logs
+
+# required for meteor-vite
+client/vite
+client/_vite-bundle
+packages/login-token/.npm/package/

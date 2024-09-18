@@ -1,0 +1,98 @@
+/* Tailwind components */
+/* Use `i-` prefix for all names */
+
+@tailwind components;
+
+@layer components {
+  .i-interact {
+    @apply
+      hover:[&:not(:disabled)]:brightness-[115%]
+      active:[&:not(:disabled)]:translate-y-px
+      focus:[&:not(:focus-visible)]:outline-none;
+  }
+
+  .i-page {
+    @apply block size-full overflow-auto px-@10 pt-@10 pb-@20;
+  }
+
+  /*
+    Use it for all titles. Apply it to h1, h2, h3 tags.
+    To make ellipsis work without fixed width, the element should be wrapped.
+    Generally, it should be wrapped with header:
+      <header class='w-full'>
+        <h2 class='i-title'>Title</h2>
+      </header>
+  */
+  .i-title {
+    @apply text-@16 font-A text-center overflow-hidden;
+  }
+
+  .i-content {
+    @apply rounded-@5 bg-white p-@20;
+  }
+
+  .i-user-decision {
+    @apply min-h-@50 max-h-@100 p-@10 rounded-@5
+      bg-white shadow-inner shadow-@blue/40
+      outline outline-1 outline-@blue/10;
+  }
+
+  .i-controls {
+    @apply bg-@blue-light i-shadow p-@20;
+  }
+
+  .i-input {
+    @apply rounded-@5
+      bg-white
+      ring-1 ring-@blue
+      focus:outline-none;
+  }
+
+  .i-invalid {
+    @apply ring-1
+      ring-yellow-500;
+  }
+
+
+  /* This can be used standalone or combined with other
+     Tailwind shadow classes like shadow-<color> */
+  .i-shadow {
+    --tw-shadow: 0 0 14px 1px rgba(0, 0, 0, 0.4);
+    --tw-shadow-colored: 0 0 24px 1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+
+
+  /*
+    `i-loader` should be defined here and not in Loading.svelte
+    because it's also used in main.html and can be used anywhere
+    we should indicate loading. E.g. it was used while the chat
+    messages are loading.
+  */
+  .i-loader {
+    @apply relative;
+  }
+  .i-loader::before {
+    @apply absolute left-1/2 top-1/2;
+    transform: translate(-50%, -50%);
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    --border: 5px;
+    border: var(--border) solid #f4f4f4;
+    border-top-color: rgb(122 122 122 / 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: i-loader-rotation 0.8s linear infinite;
+  }
+  @keyframes i-loader-rotation {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+/* App-specific CSS */
+/* Put non-Tailwind app-specific CSS here, e.g. rules for semantic classes. */
+
+.tippy-box[data-theme~='i-tippy'] .tippy-content {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 51 51 / var(--tw-bg-opacity));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  max-width: 28rem;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "fira-sans", sans-serif;
+}
+
+/* Confirm modal */
+
+.confirm-modal {
+  @apply min-w-[16rem] flex-col bg-white p-@20 text-@16 flex-center rounded-@5;
+}
+
+.confirm-modal-content {
+  @apply text-center;
+}
+
+.confirm-modal-btns {
+  @apply flex gap-@15 mt-@25;
+}
+
+.confirm-modal-btn-ok {
+  @apply i-btn i-btn-blue min-w-@70;
+}
+
+.confirm-modal-btn-cancel {
+  @apply i-btn i-btn-white min-w-@70;
+}

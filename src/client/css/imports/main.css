@@ -1,0 +1,18 @@
+/*
+  All CSS files must be inside "imports" folder to prevent their eager loading by Meteor.
+  Then they should be imported somewhere in JS (e.g. in client entry point).
+*/
+
+/* Tailwind base + general styles */
+@import 'tailwindcss/base';
+@import './general.css';
+/* Tailwind components */
+@import 'tailwindcss/components';
+@import './components.css';
+@import './buttons.css';
+/* Tailwind utilities (must be after components so they can override components styles */
+@import 'tailwindcss/utilities';
+@import './utils.css';
+/* App-specific CSS (you can add several files) */
+@import './special.css';
+@import './scrollbar.css';

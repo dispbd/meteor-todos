@@ -1,0 +1,32 @@
+/* Scrollbar */
+
+* {
+  --sb-thumb: rgb(0 0 0 / 50%);
+  --sb-track: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+/* Width */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+  max-width: 8px;
+  max-height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--sb-track);
+}
+ 
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 1rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0 0 0 / 40%); 
+}

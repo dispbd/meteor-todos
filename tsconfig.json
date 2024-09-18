@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    /*
+      Meteor uses leading slash "/" for absolute paths.
+      VS Code Intellisense does not automatically understand it,
+      so we need this path mapping.
+    */
+    "baseUrl": ".",
+    "paths": {
+      "/*": ["./*"],
+      "meteor/*": [
+        "node_modules/@types/meteor/*",
+        ".meteor/local/types/packages.d.ts"
+      ]
+    },
+    "preserveSymlinks": true,
+
+    /*
+      Don't check JS, ESLint does this
+      (added a long time ago, may not be necessary now (Feb 2022))
+    */
+    "checkJs": true,
+
+    /*
+      The following settings tell VS Code to always use ES `import`
+      instead of `require` while auto-importing files.
+    */
+    "module": "commonjs",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+
+  /* Exclude for intellisense */
+  "exclude": [
+    "node_modules",
+    "public",
+    "archive",
+    "packages/login-token"
+  ]
+}

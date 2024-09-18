@@ -1,0 +1,23 @@
+/* Tailwind base + general styles */
+@tailwind base;
+
+@layer base {
+  :root {
+    /* Put global CSS variables here */
+  }
+
+  img {
+    max-width: initial;
+  }
+
+  html {
+    @apply size-full;
+  }
+
+  body {
+    @apply size-full overflow-hidden font-B text-@14 text-black;
+    /* Break too long words everywhere */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}

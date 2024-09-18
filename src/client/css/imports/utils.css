@@ -1,0 +1,53 @@
+/* Tailwind utilities */
+/*
+  Place short one-line Tailwind utilities here.
+
+  Use unprefixed names for something very general like `flex-center`,
+  that can be theoretically reused in other apps.
+
+  Use `i-` prefixed names for app-specific utilities.
+*/
+
+@tailwind utilities;
+
+@layer utilities {
+  /*
+    Brandon is almost always bold and uppercase.
+    That's hy we define it hear instead of tailwind.config.js.
+  */
+  .font-A {
+    font-family: 'brandon-grotesque', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .font-A-normal {
+    font-family: 'brandon-grotesque', sans-serif;
+  }
+
+  .font-B {
+    font-family: 'fira-sans', sans-serif;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .inline-size {
+    container-type: inline-size;
+  }
+  .container-size {
+    container-type: size;
+  }
+
+  /*  0.390625vw is formula calculates our font size as 15px plus 0.00390625% of the screen width 
+    https://matthewjamestaylor.com/responsive-font-size */
+  .i-fluid-text {
+    font-size: calc(19px + 0.390625vw);
+    line-height: calc(31px + 0.48828125vw);
+  }
+  .i-fluid-header {
+    font-size: calc(29px + 0.390625vw);
+    line-height: calc(35px + 0.48828125vw);
+  }
+}
