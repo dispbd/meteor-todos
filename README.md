@@ -1,3 +1,21 @@
+Для проекта используется fullstack движок [Meteor](https://www.meteor.com)
+
+Установите Meteor (если не установлен)
+
+`npx meteor`
+
+Перейдите в папку проекта и проинициализируйте его:
+
+`meteor lint`
+
+Установите зависимости через npm или pnpm с параметром --force для избежания ошибок:
+
+`npm i --force` or `pnpm i --force`
+
+Запуск в dev-режиме:
+
+`npm start` or `pnpm start`
+
 ### Users API
 All APIs require authorization by login and password (basic-auth)
 
