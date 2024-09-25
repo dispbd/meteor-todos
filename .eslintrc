@@ -65,7 +65,7 @@
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": [
-      2,
+      0,
       { "ignore": ["^meteor"] },
     ] /* Ignore unresolved imports for "meteor/xxx" packages */,
 

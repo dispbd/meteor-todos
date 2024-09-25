@@ -20,13 +20,6 @@ export async function addUser(
   { username, password, name, email, role }: User,
 ) {
   try {
-    console.log('roleAuth: ', roleAuth)
-    console.log('role: ', role)
-    console.log(
-      "role == 'admin' && roleAuth != 'admin',: ",
-      role == 'admin' && roleAuth != 'admin',
-    )
-
     check(userIdAuth, String)
     check(roleAuth, String)
     if (role)
@@ -54,7 +47,6 @@ export async function addUser(
 
     return { ok: true, addedUser }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -79,7 +71,6 @@ export async function getUser(
 
     return { ok: true, user }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -103,7 +94,6 @@ export async function getUsers(
 
     return { ok: true, users }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -149,7 +139,6 @@ export async function updateUser(
 
     return { ok: true, updatedUser }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -169,7 +158,6 @@ export async function removeUser(
 
     return { ok: true, isUserRemoved: Boolean(result) }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }

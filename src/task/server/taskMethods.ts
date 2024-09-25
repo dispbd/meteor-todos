@@ -24,7 +24,6 @@ export async function addTask(
 
     return { ok: true, addedTask }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -46,7 +45,6 @@ export async function getTasks(
 
     return { ok: true, tasks }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -80,7 +78,6 @@ export async function updateTask(
 
     return { ok: true, updatedTask }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
@@ -108,7 +105,6 @@ export async function removeTask(
 
     return { ok: true, isTaskRemoved: Boolean(result) }
   } catch (error) {
-    console.log('error: ', error)
     return { ok: false, error }
   }
 }
