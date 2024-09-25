@@ -1,1 +1,1 @@
-export { parseQuery } from "./helpers"
+export { parseQuery } from './helpers'

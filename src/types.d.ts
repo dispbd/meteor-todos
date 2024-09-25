@@ -11,3 +11,8 @@ export type findOptions = {
   page?: number
   limit: number
 }
+
+export type userAuthType = {
+  userIdAuth: string
+  roleAuth: string
+}

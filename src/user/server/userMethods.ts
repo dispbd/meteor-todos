@@ -6,34 +6,45 @@ import {
   validateEmail,
   validatePassword,
 } from '/src/libs/helpers'
+import { userAuthType } from '/src/types'
 import { User, UsersCollection } from '../userSchema'
 
+const accessError =
+  'You do not have permission to perform this operation!'
 const projection = {
   fields: { services: 0 },
 }
 
-export async function addUser({
-  username,
-  password,
-  name,
-  email,
-}: User) {
+export async function addUser(
+  { userIdAuth, roleAuth }: userAuthType,
+  { username, password, name, email, role }: User,
+) {
   try {
+    console.log('roleAuth: ', roleAuth)
+    console.log('role: ', role)
+    console.log(
+      "role == 'admin' && roleAuth != 'admin',: ",
+      role == 'admin' && roleAuth != 'admin',
+    )
+
+    check(userIdAuth, String)
+    check(roleAuth, String)
+    if (role)
+      checkCondition(
+        role == 'admin' && roleAuth == 'admin',
+        accessError,
+      )
+
     check(username, String)
-    check(name, String)
     validatePassword(password as string)
+
     if (email) validateEmail(email)
+    if (name) check(name, String)
 
-    const isAdmin = false
-
-    const userId = await Accounts.createUser({
+    const userId = await Accounts.createUserAsync({
       username,
       password,
-      profile: {
-        role: isAdmin ? 'admin' : 'user',
-        name,
-        email,
-      },
+      profile: { role, name, email },
     })
     const addedUser = await UsersCollection.findOneAsync(
       userId,
@@ -48,9 +59,17 @@ export async function addUser({
   }
 }
 
-export async function getUser(userId: string) {
+export async function getUser(
+  { userIdAuth, roleAuth }: userAuthType,
+  userId: string,
+) {
   try {
     check(userId, String)
+    check(roleAuth, String)
+    checkCondition(
+      userIdAuth != userId && roleAuth == 'user',
+      accessError,
+    )
 
     const user = await UsersCollection.findOneAsync(
       userId,
@@ -66,14 +85,21 @@ export async function getUser(userId: string) {
 }
 
 export async function getUsers(
+  { userIdAuth: userId, roleAuth }: userAuthType,
   filters: object | undefined,
   options: object | undefined,
 ) {
   try {
-    const users = await UsersCollection.find(filters || {}, {
-      ...(options as Mongo.Options<object>),
-      ...projection,
-    }).fetch()
+    check(roleAuth, String)
+
+    const isUserId = roleAuth == 'user' && { userId }
+    const users = await UsersCollection.find(
+      { ...filters, ...isUserId },
+      {
+        ...(options as Mongo.Options<object>),
+        ...projection,
+      },
+    ).fetch()
 
     return { ok: true, users }
   } catch (error) {
@@ -82,15 +108,17 @@ export async function getUsers(
   }
 }
 
-export async function updateUser({
-  _id: userId,
-  username,
-  password,
-  name,
-  email,
-}: User) {
+export async function updateUser(
+  { userIdAuth, roleAuth }: userAuthType,
+  { _id: userId, username, password, name, email }: User,
+) {
   try {
     check(userId, String)
+    check(roleAuth, String)
+    checkCondition(
+      userIdAuth != userId && roleAuth == 'user',
+      accessError,
+    )
 
     const user = await UsersCollection.findOneAsync(userId)
     checkCondition(user, 'User not found!')
@@ -126,9 +154,13 @@ export async function updateUser({
   }
 }
 
-export async function removeUser(userId: string) {
+export async function removeUser(
+  { roleAuth }: userAuthType,
+  userId: string,
+) {
   try {
     check(userId, String)
+    checkCondition(roleAuth != 'admin', accessError)
 
     const user = await UsersCollection.findOneAsync(userId)
     checkCondition(user, 'User not found!')

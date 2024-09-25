@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema'
 
 export type User = {
@@ -18,11 +19,14 @@ export const UsersCollection = Meteor.users
 
 export const UserSchema = new SimpleSchema({
   _id: String,
-  // login: String,
-  name: String,
+  name: {
+    type: String,
+    optional: true,
+  },
   role: {
     type: String,
     allowedValues: ['admin', 'user'],
+    defaultValue: 'user',
   },
   email: {
     type: String,

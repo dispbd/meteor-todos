@@ -1,7 +1,7 @@
 import { WebApp } from 'meteor/webapp'
 import { parseQuery } from '/src/libs'
 import { logger } from '/src/libs/server'
-import { queryFilter } from '../../types'
+import { queryFilter, userAuthType } from '../../types'
 import { Task } from '../taskSchema'
 import {
   addTask,
@@ -12,7 +12,9 @@ import {
 
 WebApp.handlers.post('/tasks/add', async (req, res) => {
   try {
-    const result = await addTask(req.body)
+    const userAuth = res.locals as userAuthType
+
+    const result = await addTask(userAuth, req.body)
 
     if (result.ok) {
       res.status(200).json(result.addedTask)
@@ -26,9 +28,11 @@ WebApp.handlers.post('/tasks/add', async (req, res) => {
 
 WebApp.handlers.get('/tasks', async (req, res) => {
   try {
+    const userAuth = res.locals as userAuthType
+    
     const { filters, options } = parseQuery(req.query as queryFilter)
 
-    const result = await getTasks(filters, options)
+    const result = await getTasks(userAuth, filters, options)
 
     if (result.ok) {
       res.status(200).json(result.tasks)
@@ -42,11 +46,13 @@ WebApp.handlers.get('/tasks', async (req, res) => {
 
 WebApp.handlers.put('/tasks/update', async (req, res) => {
   try {
+    const userAuth = res.locals as userAuthType
+    
     if (req.query?.id) {
       req.body._id = req.query.id
     }
 
-    const result = await updateTask(req.body as Task)
+    const result = await updateTask(userAuth, req.body as Task)
 
     if (result.ok) {
       res.status(200).json(result.updatedTask)
@@ -60,7 +66,9 @@ WebApp.handlers.put('/tasks/update', async (req, res) => {
 
 WebApp.handlers.delete('/tasks/remove/:taskId', async (req, res) => {
   try {
-    const result = await removeTask(req.params.taskId)
+    const userAuth = res.locals as userAuthType
+
+    const result = await removeTask(userAuth, req.params.taskId)
 
     if (result.ok) {
       res.status(200).json(result)

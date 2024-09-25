@@ -2,7 +2,7 @@ import bodyParser from 'body-parser'
 import { WebApp } from 'meteor/webapp'
 import { parseQuery } from '/src/libs'
 import { logger } from '/src/libs/server'
-import { queryFilter } from '../../types'
+import { queryFilter, userAuthType } from '../../types'
 import { User } from '../userSchema'
 import {
   addUser,
@@ -18,19 +18,11 @@ WebApp.handlers
   .use(bodyParser.text())
   .use(bodyParser.json())
 
-// WebApp.handlers.use((req, res, next) => {
-//   const authHeader = req.headers.authorization
-
-//   if (authHeader !== `Bearer ${req.query.authToken}`) {
-//     res.status(401).json({ error: 'Unauthorized' })
-//   }
-
-//   next()
-// })
-
 WebApp.handlers.post('/users/add', async (req, res) => {
   try {
-    const result = await addUser(req.body)
+    const userAuth = res.locals as userAuthType
+
+    const result = await addUser(userAuth, req.body)
 
     if (result.ok) {
       res.status(200).json(result.addedUser)
@@ -44,7 +36,9 @@ WebApp.handlers.post('/users/add', async (req, res) => {
 
 WebApp.handlers.get('/users/:userId', async (req, res) => {
   try {
-    const result = await getUser(req.body.userId)
+    const userAuth = res.locals as userAuthType
+
+    const result = await getUser(userAuth, req.body.userId)
 
     if (result.ok) {
       res.status(200).json(result.user)
@@ -58,9 +52,11 @@ WebApp.handlers.get('/users/:userId', async (req, res) => {
 
 WebApp.handlers.get('/users', async (req, res) => {
   try {
+    const userAuth = res.locals as userAuthType
+
     const { filters, options } = parseQuery(req.query as queryFilter)
 
-    const result = await getUsers(filters, options)
+    const result = await getUsers(userAuth, filters, options)
 
     if (result.ok) {
       res.status(200).json(result.users)
@@ -74,11 +70,12 @@ WebApp.handlers.get('/users', async (req, res) => {
 
 WebApp.handlers.put('/users/update', async (req, res) => {
   try {
+    const userAuth = res.locals as userAuthType
     if (req.query?.id) {
       req.body._id = req.query.id
     }
 
-    const result = await updateUser(req.body as User)
+    const result = await updateUser(userAuth, req.body as User)
 
     if (result.ok) {
       res.status(200).json(result.updatedUser)
@@ -92,7 +89,9 @@ WebApp.handlers.put('/users/update', async (req, res) => {
 
 WebApp.handlers.delete('/users/remove/:userId', async (req, res) => {
   try {
-    const result = await removeUser(req.params.userId)
+    const userAuth = res.locals as userAuthType
+
+    const result = await removeUser(userAuth, req.params.userId)
 
     if (result.ok) {
       res.status(200).json(result)

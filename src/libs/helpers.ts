@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { queryFilter } from 'src/types'
 
 export const checkCondition = (
