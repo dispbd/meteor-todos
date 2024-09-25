@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser'
 import { WebApp } from 'meteor/webapp'
+import multer from 'multer'
 import { parseQuery } from '/src/libs'
 import { logger } from '/src/libs/server'
 import { queryFilter, userAuthType } from '../../types'
@@ -17,6 +18,18 @@ WebApp.handlers
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.text())
   .use(bodyParser.json())
+
+const upload = multer({})
+
+WebApp.handlers.post(
+  '/users/addAvatar',
+  upload.single('avatar'),
+  function (req, res, next) {
+    // req.file is the `avatar` file
+    console.log('req.file: ', req.file)
+    // req.body will hold the text fields, if there were any
+  },
+)
 
 WebApp.handlers.post('/users/add', async (req, res) => {
   try {

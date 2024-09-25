@@ -15,8 +15,9 @@
     "body-parser": "^1.20.3",
     "log4js": "^6.9.1",
     "meteor-node-stubs": "1.2.10",
+    "multer": "^1.4.5-lts.1",
     "simpl-schema": "3.4.6",
-    "svelte": "5.0.0-next.247"
+    "svelte": "5.0.0-next.259"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
@@ -26,15 +27,16 @@
     "@types/eslint": "^8.56.12",
     "@types/express": "^4.17.21",
     "@types/meteor": "2.9.8",
-    "@types/node": "^20.16.5",
-    "@typescript-eslint/eslint-plugin": "^8.6.0",
-    "@typescript-eslint/parser": "^8.6.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^20.16.7",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
     "autoprefixer": "10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-meteor": "^0.4.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-svelte": "^2.44.0",
     "meteor-vite": "2.0.0-next.1",
@@ -42,12 +44,12 @@
     "postcss-load-config": "6.0.1",
     "prettier": "3.3.3",
     "prettier-plugin-svelte": "3.2.6",
-    "prettier-plugin-tailwindcss": "0.6.6",
-    "tailwindcss": "3.4.11",
+    "prettier-plugin-tailwindcss": "0.6.8",
+    "tailwindcss": "3.4.13",
     "tailwindcss-extend": "0.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
-    "vite": "5.4.6"
+    "vite": "5.4.8"
   },
   "meteor": {
     "mainModule": {

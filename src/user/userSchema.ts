@@ -1,3 +1,4 @@
+import { File } from 'buffer'
 import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema'
 
@@ -34,6 +35,10 @@ export const UserSchema = new SimpleSchema({
   },
   updatedAt: {
     type: Date,
+    optional: true,
+  },
+  avatar: {
+    type: File,
     optional: true,
   },
 

@@ -31,5 +31,6 @@ accounts-password
 # jorgenvatle:vite-bundler      # Vite bundler for Meteor (fork by @JorgenVatle)
 # dispatch:login-token
 zodern:types
+ostrio:files
 
 ostrio:meteor-root
