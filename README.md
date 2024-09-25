@@ -1,3 +1,140 @@
+### Users API
+All APIs require authorization by login and password (basic-auth)
+
+<details>
+<summary><code>POST</code> <code><b>/users/add</b></code> <code>(add users)</code></summary>
+
+##### Body object (JSON)
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | username      |  true | string   | N/A  |
+> | password      |  true | string   | The password must be between 6 and 18 characters long, contain at least one letter, one number, one special character |
+> | name      |  false | string   | N/A  |
+> | email      |  false | string   | Must match [emailRegex](https://emailregex.com) |
+> | role      |  false | string   | Requires admin rights  |
+
+</details>
+
+
+<details>
+<summary><code>GET</code> <code><b>/users/:userId</b></code> <code>(get user by id)</code></summary>
+
+##### Parametres URL
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | userId      |  true | string   | N/A  |
+
+</details>
+
+
+<details>
+<summary><code>GET</code> <code><b>/users</b></code> <code>(get users)</code></summary>
+
+##### Parametres
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | sort_by      |  false | string   | any user field |
+> | order_by      |  false | string   | asc or desc  |
+> | page     |  false | number   |  |
+> | limit      |  false | number   |   |
+> | _id     |  false | string   | N/A  |
+> | username      |  false | string   | N/A  |
+> | name      |  false | string   | N/A  |
+> | email     |  false | string   | Must match [emailRegex](https://emailregex.com) |
+> | role      |  false | string   | Requires admin rights  |
+
+</details>
+
+
+<details>
+<summary><code>PUT</code> <code><b>/users/update</b></code> <code>(update user)</code></summary>
+
+##### Body object (JSON)
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | username      |  true | string   | N/A  |
+> | password      |  true | string   | The password must be between 6 and 18 characters long, contain at least one letter, one number, one special character |
+> | name      |  false | string   | N/A  |
+> | email      |  false | string   | Must match emailRegex [emailRegex](https://emailregex.com) |
+> | role      |  false | string   | Requires admin rights  |
+
+</details>
+
+
+<details>
+<summary><code>DELETE</code> <code><b>/users/remove/:userId</b></code> <code>(add users)</code></summary>
+
+##### Parametres URL
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | userId      |  true | string   | Requires admin rights  |
+
+</details>
+
+### Tasks API
+All APIs require authorization by login and password (basic-auth)
+
+<details>
+<summary><code>POST</code> <code><b>/tasks/add</b></code> <code>(add tasks)</code></summary>
+
+##### Body object (JSON)
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | taskname      |  true | string   | N/A  |
+> | description     |  false | string   |  |
+
+</details>
+
+
+<details>
+<summary><code>GET</code> <code><b>/tasks</b></code> <code>(get tasks)</code></summary>
+
+##### Parametres
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | sort_by      |  false | string   | any task field |
+> | order_by      |  false | string   | asc or desc  |
+> | page     |  false | number   |  |
+> | limit      |  false | number   |   |
+> | _id     |  false | string   | N/A  |
+> | name      |  false | string   | N/A  |
+> | description     |  false | string   |  |
+
+</details>
+
+
+<details>
+<summary><code>PUT</code> <code><b>/tasks/update</b></code> <code>(update task)</code></summary>
+
+##### Body object (JSON)
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | name      |  false | string   | N/A  |
+> | description     |  false | string   |  |
+
+</details>
+
+
+<details>
+<summary><code>DELETE</code> <code><b>/tasks/remove/:taskId</b></code> <code>(add tasks)</code></summary>
+
+##### Parametres URL
+
+> | name      |  required     | content-type               | description                                                           |
+> |-----------|-----------|-------------------------|----------------------------------------|
+> | taskId      |  true | string   |   |
+
+</details>
+
+
 ## Требования к задаче:
 - [x] Использовать Node.js и TypeScript.
 - [x] Обработать основные ошибки.
